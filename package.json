@@ -2,19 +2,21 @@
 	"name": "github-env-cleaner",
 	"version": "1.0.2",
 	"description": "Remove github deployment history",
-	"main": "dist/index.js",
+	"main": "dist/index.mjs",
 	"type": "module",
 	"bin": {
-        "github-env-cleaner": "dist/index.js"
-    },
+		"github-env-cleaner": "dist/index.mjs"
+	},
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc && swc src/index.ts -o dist/index.mjs",
 		"prepare": "pnpm run build"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
+		"@swc/cli": "^0.1.57",
+		"@swc/core": "^1.2.248",
 		"@types/inquirer": "^9.0.1",
 		"inquirer": "^9.1.1",
 		"typescript": "^4.8.2"
