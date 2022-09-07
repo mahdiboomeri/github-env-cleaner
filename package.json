@@ -8,16 +8,16 @@
 		"github-env-cleaner": "dist/index.mjs"
 	},
 	"scripts": {
-		"build": "tsc && swc src/index.ts -o dist/index.mjs",
-		"prepare": "pnpm run build"
+		"typecheck": "tsc --noEmit",
+		"build": "pnpm typecheck && esbuild ./src/index.ts --outfile=dist/index.mjs && chmod +x dist/index.mjs",
+		"prepare": "pnpm build"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "Mahdi Boomeri <mahdi.b2or@proton.me>",
 	"license": "MIT",
 	"devDependencies": {
-		"@swc/cli": "^0.1.57",
-		"@swc/core": "^1.2.248",
 		"@types/inquirer": "^9.0.1",
+		"esbuild": "^0.15.7",
 		"inquirer": "^9.1.1",
 		"typescript": "^4.8.2"
 	},
