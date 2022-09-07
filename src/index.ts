@@ -46,12 +46,12 @@ const main = async () => {
 		throw new Error('No deployment found.');
 	}
 
-	deploymentIds.forEach(async (deployment: number) => {
+	for (const deployment of deploymentIds) {
 		await octokit.request(
 			`DELETE /repos/{owner}/{repo}/deployments/${deployment}`,
 			octokitConf
 		);
-	});
+	}
 
 	process.exit(0);
 };
