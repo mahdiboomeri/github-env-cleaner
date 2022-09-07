@@ -2,6 +2,10 @@
 	"name": "github-env-cleaner",
 	"version": "1.0.6",
 	"description": "Remove github deployment history",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mahdiboomeri/github-env-cleaner.git"
+	},
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"bin": {
