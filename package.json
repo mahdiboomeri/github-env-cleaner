@@ -2,14 +2,14 @@
 	"name": "github-env-cleaner",
 	"version": "1.0.4",
 	"description": "Remove github deployment history",
-	"main": "dist/index.mjs",
 	"type": "module",
+	"main": "./dist/index.cjs",
 	"bin": {
-		"github-env-cleaner": "dist/index.mjs"
+		"github-env-cleaner": "./dist/index.cjs"
 	},
 	"scripts": {
 		"typecheck": "tsc --noEmit",
-		"build": "pnpm typecheck && esbuild ./src/index.ts --outfile=dist/index.mjs && chmod +x dist/index.mjs",
+		"build": "pnpm typecheck && tsup src/index.ts --clean --sourcemap --metafile && chmod +x ./dist/index.cjs",
 		"prepare": "pnpm build"
 	},
 	"keywords": [],
@@ -17,11 +17,10 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@types/inquirer": "^9.0.1",
-		"esbuild": "^0.15.7",
+		"chalk": "^5.0.1",
 		"inquirer": "^9.1.1",
+		"octokit": "^2.0.7",
+		"tsup": "^6.2.3",
 		"typescript": "^4.8.2"
-	},
-	"dependencies": {
-		"octokit": "^2.0.7"
 	}
 }

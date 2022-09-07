@@ -1,28 +1,33 @@
 #! /usr/bin/env node
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 import { Octokit } from 'octokit';
 
-const answers = (await inquirer.prompt([
-	{
-		name: 'username',
-		message: 'Your username: ',
-	},
-	{
-		name: 'repo',
-		message: 'ID of the repository: ',
-	},
-	{
-		name: 'token',
-		message: 'Github access token (must have repo_deployment privilege): ',
-		type: 'password',
-	},
-])) as Partial<{
-	username: string;
-	repo: string;
-	token: string;
-}>;
+const main = async () => {
+	console.log(
+		chalk.blue('GitHub Deployments Cleaner')
+	);
 
-try {
+	const answers = (await inquirer.prompt([
+		{
+			name: 'username',
+			message: 'Your username: ',
+		},
+		{
+			name: 'repo',
+			message: 'ID of the repository: ',
+		},
+		{
+			name: 'token',
+			message: 'Github access token (must have repo_deployment privilege): ',
+			type: 'password',
+		},
+	])) as Partial<{
+		username: string;
+		repo: string;
+		token: string;
+	}>;
+
 	const octokit = new Octokit({
 		auth: answers.token ?? '',
 	});
@@ -41,13 +46,17 @@ try {
 		throw new Error('No deployment found.');
 	}
 
-	deploymentIds.forEach(async (deployment) => {
+	deploymentIds.forEach(async (deployment: number) => {
 		await octokit.request(
 			`DELETE /repos/{owner}/{repo}/deployments/${deployment}`,
 			octokitConf
 		);
 	});
-} catch (err) {
+
+	process.exit(0);
+};
+
+main().catch((err) => {
 	let errorMessage = '❌ Something unexpected happend.';
 
 	if (err instanceof Error) {
@@ -56,4 +65,4 @@ try {
 
 	console.log(errorMessage);
 	process.exit(1);
-}
+});
