@@ -1,6 +1,6 @@
 {
 	"name": "github-env-cleaner",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Remove github deployment history",
 	"type": "module",
 	"main": "./dist/index.cjs",
