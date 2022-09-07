@@ -7,7 +7,7 @@
  First you need a access token with repo_deployment privilege. you can create a new token from `Settings->Developer Settings->Personal Access Tokens`.
  
  ```bash
- pnpm dlx github-env-cleaner // or npx github-env-cleaner
+ pnpm dlx github-env-cleaner # or npx github-env-cleaner
  ```
  
  ### Known limitations
